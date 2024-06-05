@@ -164,11 +164,35 @@ input{
     #openModalBtn{
         font-size: 26px;
     }
-    .pesquisa{
-        width: 25%;
-        height: 35px;
-        border: solid 2px #000000;
-        border-radius: 10px 10px 10px 10px;
+    /*Barra de Pesquisa*/
+    .pesquisar{
+        width: auto;
+        height: auto;
+        display: flex;
+    }
+
+    .search-box {
+        position: relative; 
+        width: 20%;
+    }
+    
+    .search-text {
+        width: auto; 
+        height: 45px;
+        border: solid 1px #000000;
+        border-radius: 10px; 
+        padding: 0 10px; 
+    }
+    
+    .search-btn {
+        width: 5%;
+        position: absolute; 
+        right: 0; 
+        top: 0; 
+        height: auto; 
+        padding: 5px; 
+        box-sizing: border-box;
+        margin: 2%; 
     }
 
     /*A estilização da modal 1*/
