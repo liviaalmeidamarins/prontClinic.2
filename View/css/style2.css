@@ -285,6 +285,19 @@ input{
         cursor: pointer;
         margin-right: 5px;
     }
+    .icon i {
+        cursor: pointer;
+        color: #666666; /* Cor padrão */
+    }
+    
+    .default i {
+        color: #64B68B; /* Cor verde */
+    }
+    
+    .clicked i {
+        color: #64B68B; /* Cor verde */
+    }
+    
     
     
    
