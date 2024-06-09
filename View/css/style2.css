@@ -18,7 +18,7 @@ nav {
     margin: 0;
     height: 100vh;
     background: #fff;
-    width: 10%;
+    width: 8%;
     overflow: hidden;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgba(0,0,0,0.1);
@@ -42,7 +42,7 @@ li {
 
 .aa img{
     justify-content: center;
-    width: 80px;
+    width: 60px;
     height: auto;
    
 }
@@ -152,7 +152,7 @@ input{
     }
 
     .icon{
-        font-size: 26px;
+        font-size: 22px;
         cursor: pointer;
     }
 
@@ -162,7 +162,7 @@ input{
         align-items: center;
     }
     #openModalBtn{
-        font-size: 26px;
+        font-size: 22px;
     }
     
     /*Barra de Pesquisa*/
