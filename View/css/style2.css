@@ -83,33 +83,23 @@ main{
     height: 70px;
     background-color:  #D6E88D;
     border-radius: 10px 10px 10px 10px;
-    
 }
 .bloquinho{
-    
-    border: 3px solid red;
     display: flex;
     margin-top: 10px;
     margin-left: 10px;
     background-color: white;
     width: 17%;
-    height: 70%;
-    border-radius: 10px 30px 30px 10px ;
+    height: 73%;
+    border-radius: 10px 30px 30px 10px;
+
 }
 .bloquinho p {
     margin-left: 26px;
     margin-top: 2px;
     color: #000000;
+    text-align: center;
 }
-
-.bloquinho h3 {
-    background-color: #64B68B;
-    display: block;
-    margin-top: 16px; /* Para ajustar o espaçamento entre o parágrafo e o cabeçalho */
-    margin-left: 15px;
-}
-
-
 
 .nome{
     color: white;
