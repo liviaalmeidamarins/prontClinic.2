@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+// Defina as variáveis da sessão
+$nome = isset($_SESSION['Cli_nome']) ? $_SESSION['Cli_nome'] : '';
+$email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -153,17 +161,14 @@
             <form action="" method="post">
                 <div class="formataçao-modal">
                     <br>
-                    <label for="cpf">CPF/CNPJ</label>
-                    <input type="text" id="input-modal3" name="cpf" placeholder="CPF/CNPJ Cadastrado" required>
                     <label for="Nome">Empresa</label>
-                    <input type="text" name="email" id="input-modal3" placeholder="Nome da empresa">
+                    <input type="text" name="nome" id="input-modal3" placeholder="Nome da empresa" value="<?php echo htmlspecialchars($nome); ?>">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="input-modal3" placeholder="Email cadastrado">
+                    <input type="text" name="email" id="input-modal3" placeholder="Email cadastrado" value="<?php echo htmlspecialchars($email); ?>">
                     <label for="telefone">Telefone</label>
-                    <input type="number" name="email" id="input-modal3" placeholder="(ddd) xxxxx-xxxx">
+                    <input type="number" name="telefone" id="input-modal3" placeholder="(ddd) xxxxx-xxxx">
                     <button class="botao-Enviar" style="font-weight: bolder; color: white;">Salvar</button>
                 </div>
-
             </form>
 
         </div>
@@ -171,7 +176,7 @@
 
     <main>
         <div class="frase">
-            <h3>Bem-vindo, </h3>
+            <h3>Bem-vindo, <?php echo htmlspecialchars($nome); ?> </h3>
         </div>
 
         <div class="search-box">

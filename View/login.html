@@ -60,7 +60,7 @@
                     console.log("Resposta recebida:", response); // Debug: log the response to the console
                     var resposta = JSON.parse(response);
                     if (resposta.status === 'login_aceito') {
-                        window.location.href = 'sistema.html';
+                        window.location.href = 'sistema.php';
                     } else if (resposta.status === 'login_nao_aceito') {
                         console.log("Login não aceito"); // Debug: log if login is not accepted
                         // Limpar mensagens de erro anteriores

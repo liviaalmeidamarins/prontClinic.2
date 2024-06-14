@@ -109,7 +109,7 @@ function SalvarClinicanaSessao($email)
     if ($conecta) {
         try {
             // Preparando a consulta SQL
-            $sql = "SELECT id_clinica, Cli_nome FROM Clinica WHERE cli_email = :email";
+            $sql = "SELECT id_clinica, Cli_nome, Cli_email FROM Clinica WHERE cli_email = :email";
             $stmt = $conecta->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
@@ -122,11 +122,13 @@ function SalvarClinicanaSessao($email)
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $id_clinica = $row["id_clinica"];
                     $cli_nome = $row["Cli_nome"];
+                    $cli_email = $row["Cli_email"];
 
                     // Salvando os dados na sessão
                     session_start();
                     $_SESSION['id_clinica'] = $id_clinica;
                     $_SESSION['Cli_nome'] = $cli_nome;
+                    $_SESSION['Cli_email'] = $cli_email; 
 
                     //echo "ID da Clínica: " . $id_clinica . " - Nome da Clínica: " . $cli_nome . "<br>";
                 }
