@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Tempo de geração: 02/06/2024 às 01:09
+-- Tempo de geração: 16/06/2024 às 18:03
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -28,19 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `anamnese` (
-  `id_Anamnese` int(11) NOT NULL,
-  `ana_pac_id` int(11) NOT NULL,
-  `Queixa` text NOT NULL,
-  `Medicacao` text NOT NULL,
-  `alegias` text NOT NULL,
-  `doencas` text NOT NULL,
-  `ana_cirurgia` varchar(700) NOT NULL,
-  `ana_sangramento` varchar(700) NOT NULL,
-  `ana_cicatrizacao` varchar(700) NOT NULL,
-  `ana_ar` varchar(700) NOT NULL,
-  `ana_gestante` int(11) NOT NULL DEFAULT 0,
-  `ana_observacoes` text NOT NULL
+  `ID_Anamnese` int(11) NOT NULL,
+  `ID_Paciente` int(11) NOT NULL,
+  `QueixaPrincipal` text DEFAULT NULL,
+  `UsoMedicacao` varchar(255) DEFAULT NULL,
+  `Alergia` varchar(255) DEFAULT NULL,
+  `Doencas` varchar(255) DEFAULT NULL,
+  `Cirurgia` varchar(255) DEFAULT NULL,
+  `Sangramento` varchar(50) DEFAULT NULL,
+  `Cicatrizacao` varchar(50) DEFAULT NULL,
+  `FaltaAr` varchar(50) DEFAULT NULL,
+  `Gestante` int(11) DEFAULT 0,
+  `Observacoes` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `anamnese`
+--
+
+INSERT INTO `anamnese` (`ID_Anamnese`, `ID_Paciente`, `QueixaPrincipal`, `UsoMedicacao`, `Alergia`, `Doencas`, `Cirurgia`, `Sangramento`, `Cicatrizacao`, `FaltaAr`, `Gestante`, `Observacoes`) VALUES
+(10, 73, 'retornou', 'retornou2', 'retornou2', 'diabetes, asma', 'retornou2', 'normal', 'complicada', 'raramente', 2, 'retornou2'),
+(11, 78, 'dor de dente', '', 'a amendoim', 'diabetes', '', 'normal', 'normal', 'raramente', 0, '');
 
 -- --------------------------------------------------------
 
@@ -62,7 +70,10 @@ CREATE TABLE `clinica` (
 INSERT INTO `clinica` (`id_Clinica`, `Cli_nome`, `Cli_email`, `Cli_senha`) VALUES
 (63, 'Gigaton', 'Gigaton@gmail.com', '$2y$10$SnsOuWd/.0E1LQjs0zBPOOTChckDxPXcL7BVjirNFu4AUhlpsBtfy'),
 (103, 'Andre Marcos Oliveira de Toledo', 'andre.toledo@teste.com', '$2y$10$PHVSzc5HOqmSug7d0yvOmerVxcw9soTyKsrbdlwcKT7Ui.G26OAWG'),
-(107, 'Andre Neko', 'neko@gmail.com', '$2y$10$BvjGpmGdaX5BFfwFLSN6yuNy.y1aYWNFlcKt/KghXtBDXjQirf2nm');
+(107, 'Andre Neko', 'neko@gmail.com', '$2y$10$BvjGpmGdaX5BFfwFLSN6yuNy.y1aYWNFlcKt/KghXtBDXjQirf2nm'),
+(109, 'cli teste ', 'toledo.teste.m@gmail.com', '$2y$10$2wkViAV0C2lMQhR6G7kkv.ujAAgs2DArFQ.7SeyE9IiEEYhBygbd6'),
+(110, 'nono', 'nono@gmail.com', '$2y$10$QFtoP8ezlp6rZg.LgXpZ1ebb3uktYyHvxl3cL7pD5jXU7GDl8.gDG'),
+(111, 'outroID', 'outroID@gmail.com', '$2y$10$q3Uls4Il2nXRufVq/ipVJOU/jjy2rJTQEpjCqD84T2lmSvQxwX5OK');
 
 -- --------------------------------------------------------
 
@@ -83,6 +94,52 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `paciente`
+--
+
+INSERT INTO `paciente` (`id_paciente`, `pac_nome`, `pac_cpf`, `pac_telefone`, `pac_email`, `pac_convenio`, `pac_nascimento`, `id_Clinica`, `pac_atualizacao`) VALUES
+(72, 'Teste de coleta concluido', '12345678900', '12996007128', 'coleta@gmail.com', 'coletado', '2024-06-08', 107, '2024-06-09 04:02:26'),
+(73, 'Andre Neko atualizado 3', '12345678901', '12996007100', 'atu@gmail.com', 'possui sim', '2024-05-26', 107, '2024-06-16 12:44:05'),
+(74, 'Clinca diferente', '12345678901', '12996007128', 'diferente@gmail.com', 'diferente', '2024-05-27', 111, '2024-06-09 17:41:37'),
+(75, 'Andre Neko 02', '12345678900', '12996007128', 'Gigaton@gmail.com', 'possui', '2024-05-26', 111, '2024-06-09 17:43:35'),
+(76, 'Andre Toledo', '42870675844', '12996007128', 'andre.toledo@gmail.com', 'Não possui', '2024-05-27', 107, '2024-06-09 18:09:26'),
+(77, 'teste todos os cadastros', '12345678901', '12996007128', '', '', '0000-00-00', 110, '2024-06-13 19:14:48'),
+(78, 'bf', '52760149066', '', 'bf@gmail.com', 'Não possui', '2024-05-27', 107, '2024-06-16 12:24:41');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `saude_bucal`
+--
+
+CREATE TABLE `saude_bucal` (
+  `id_saude_bucal` int(11) NOT NULL,
+  `ID_Paciente` int(11) NOT NULL,
+  `ReacaoAnestesia` enum('não','sim') NOT NULL,
+  `DorDentes` enum('não','sim') NOT NULL,
+  `DorGengiva` enum('não','sim') NOT NULL,
+  `SangramentoGengiva` enum('não','raramente','frequentemente','sempre') NOT NULL,
+  `GostoRuimBoca` enum('não','sim') NOT NULL,
+  `BocaSeca` enum('não','sim') NOT NULL,
+  `RangerDentes` enum('não','sim') NOT NULL,
+  `DorMaxilar` enum('não','sim') NOT NULL,
+  `DorOuvido` enum('não','sim') NOT NULL,
+  `UltimoTratamento` date DEFAULT NULL,
+  `Fumante` enum('não','sim') NOT NULL,
+  `EscovaDentes` int(11) NOT NULL,
+  `FioDental` enum('não','sim') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `saude_bucal`
+--
+
+INSERT INTO `saude_bucal` (`id_saude_bucal`, `ID_Paciente`, `ReacaoAnestesia`, `DorDentes`, `DorGengiva`, `SangramentoGengiva`, `GostoRuimBoca`, `BocaSeca`, `RangerDentes`, `DorMaxilar`, `DorOuvido`, `UltimoTratamento`, `Fumante`, `EscovaDentes`, `FioDental`) VALUES
+(3, 73, 'sim', 'sim', 'sim', 'sempre', 'sim', 'sim', 'sim', 'sim', 'sim', '2024-06-12', 'sim', 1, 'sim'),
+(4, 72, 'não', 'não', 'sim', 'sempre', 'não', 'não', 'não', 'não', 'não', NULL, 'não', 3, 'não'),
+(5, 78, 'não', 'não', 'não', 'não', 'não', 'não', 'não', 'sim', 'sim', '2024-05-28', 'não', 3, 'sim');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -90,7 +147,7 @@ CREATE TABLE `paciente` (
 -- Índices de tabela `anamnese`
 --
 ALTER TABLE `anamnese`
-  ADD PRIMARY KEY (`id_Anamnese`);
+  ADD PRIMARY KEY (`ID_Anamnese`);
 
 --
 -- Índices de tabela `clinica`
@@ -105,6 +162,12 @@ ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id_paciente`);
 
 --
+-- Índices de tabela `saude_bucal`
+--
+ALTER TABLE `saude_bucal`
+  ADD PRIMARY KEY (`id_saude_bucal`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -112,19 +175,25 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de tabela `anamnese`
 --
 ALTER TABLE `anamnese`
-  MODIFY `id_Anamnese` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Anamnese` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `clinica`
 --
 ALTER TABLE `clinica`
-  MODIFY `id_Clinica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id_Clinica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT de tabela `saude_bucal`
+--
+ALTER TABLE `saude_bucal`
+  MODIFY `id_saude_bucal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

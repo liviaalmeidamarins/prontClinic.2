@@ -148,6 +148,162 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                     <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Atualizar cadastro" onclick="Atualizar_Cadastro()">
                 </div>
             </form>
+            <form id="Anamnese_form">
+                <div class="formataçao-modal">
+                    <br>
+                    <h3>Anamnese</h3>
+                    <br>
+                    <input type="hidden" name="tipo" value="Anamnese_form">
+                    <br>
+
+                    <label for="cpf-anamnese"></label>
+                    <input type="hidden" id="cpf-anamnese" name="cpf-anamnese" placeholder="Digite o CPF" required readonly>
+            
+                    <label for="queixa-principal">Queixa principal e história da doença atual *</label>
+                    <textarea id="queixa-principal" name="queixa-principal" required></textarea><br>
+                    <span id="mensagemErroQueixa" class="text-danger"></span><br>
+
+                    <label for="uso-medicação">Uso de medicação</label>
+                    <input type="text" id="uso-medicação" name="uso-medicacao" placeholder="Descreva o uso de medicação, se houver"><br>
+            
+                    <label for="alergia">Alergia</label>
+                    <input type="text" id="alergia" name="alergia" placeholder="Descreva alergias, se houver"><br>
+            
+                    <label>Doenças</label><br>
+                    <div>
+                        <input type="checkbox" id="hipertensao" name="doencas[]" value="hipertensão">
+                        <label for="hipertensao">Hipertensão</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="diabetes" name="doencas[]" value="diabetes">
+                        <label for="diabetes">Diabetes</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="asma" name="doencas[]" value="asma">
+                        <label for="asma">Asma</label>
+                    </div>
+            
+                    <label for="cirurgia">Passou por alguma cirurgia</label>
+                    <input type="text" id="cirurgia" name="cirurgia" placeholder="Descreva cirurgias, se houver"><br>
+            
+                    <label for="sangramento">Quando se fere seu sangramento é *</label>
+                    <select id="sangramento" name="sangramento" required>
+                        <option value="normal">Normal</option>
+                        <option value="excessivo">Excessivo</option>
+                    </select><br>
+            
+                    <label for="cicatrizacao">Cicatrização *</label>
+                    <select id="cicatrizacao" name="cicatrizacao" required>
+                        <option value="normal">Normal</option>
+                        <option value="complicada">Complicada</option>
+                    </select><br>
+            
+                    <label for="falta-ar">Sente falta de ar *</label>
+                    <select id="falta-ar" name="falta-ar" required>
+                        <option value="não">Não</option>
+                        <option value="raramente">Raramente</option>
+                        <option value="frequentemente">Frequentemente</option>
+                        <option value="sempre">Sempre</option>
+                    </select><br>
+            
+                    <label for="gestante">Gestante (quantas semanas)</label>
+                    <input type="number" id="gestante" name="gestante" value="0"><br>
+            
+                    <label for="observacoes">Observações</label>
+                    <textarea id="observacoes" name="observacoes"></textarea><br>
+
+                    <span id="mensagemSucessoAnamnese" class="text-danger"></span><br>
+                    <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Criar Anamnese" onclick="Criar_Anamnese()">
+                </div>
+            </form>
+            <form id="SaudeBucal_form">
+                <div class="formataçao-modal">
+                    <br>
+                    <h3>Saúde Bucal</h3>
+                    <br>
+                    <input type="hidden" name="tipo" value="SaudeBucal_form">
+
+                    <label for="cpf-anamnesecpf-saude-bucal"></label>
+                    <input type="hidden" id="cpf-saude-bucal" name="cpf-saude-bucal" placeholder="Digite o CPF" required readonly>
+
+                    <label for="reacao-anestesia">Reação à anestesia *</label>
+                    <select id="reacao-anestesia" name="reacao-anestesia" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+                    
+                    <label for="dor-dentes">Dor nos dentes *</label>
+                    <select id="dor-dentes" name="dor-dentes" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="dor-gengiva">Dor na gengiva *</label>
+                    <select id="dor-gengiva" name="dor-gengiva" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="sangramento-gengiva">Sangramento na gengiva *</label>
+                    <select id="sangramento-gengiva" name="sangramento-gengiva" required>
+                        <option value="não">Não</option>
+                        <option value="raramente">Raramente</option>
+                        <option value="frequentemente">Frequentemente</option>
+                        <option value="sempre">Sempre</option>
+                    </select><br>
+        
+                    <label for="gosto-ruim-boca">Gosto ruim na boca *</label>
+                    <select id="gosto-ruim-boca" name="gosto-ruim-boca" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="boca-seca">Boca seca *</label>
+                    <select id="boca-seca" name="boca-seca" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="ranger-dentes">Ranger dos dentes *</label>
+                    <select id="ranger-dentes" name="ranger-dentes" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="dor-maxilar">Dor no maxilar *</label>
+                    <select id="dor-maxilar" name="dor-maxilar" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="dor-ouvido">Dor no ouvido *</label>
+                    <select id="dor-ouvido" name="dor-ouvido" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="ultimo-tratamento">Último tratamento *</label>
+                    <input type="date" id="ultimo-tratamento" name="ultimo-tratamento"><br>
+        
+                    <label for="fumante">Fumante *</label>
+                    <select id="fumante" name="fumante" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <label for="escova-dentes">Escova dentes (vezes por dia) *</label>
+                    <input type="number" id="escova-dentes" name="escova-dentes" required><br>
+        
+                    <label for="fio-dental">Usa fio dental *</label>
+                    <select id="fio-dental" name="fio-dental" required>
+                        <option value="não">Não</option>
+                        <option value="sim">Sim</option>
+                    </select><br>
+        
+                    <span id="mensagemSucessoSaudeBucal" class="text-danger"></span><br>
+                    <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Criar Saúde Bucal" onclick="Criar_SaudeBucal()">
+                </div>
+            </form>
             
         </div>
     </div>
@@ -237,8 +393,47 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
         });
     
        
-    
-        function Cadastrar() {
+    // ... Cadastro ...
+
+    function ConsultarCPF() 
+        {
+            console.log("Enviando formulário...");
+            $.ajax({
+            type: "POST",
+            url: "../Controller/controllerSistema.php",
+            data: $("#CPF_form").serialize(),
+            success: function(response) 
+            {
+            console.log("Resposta recebida:", response);
+            var resposta = JSON.parse(response);
+            var cpf = $("#cpf-conferir").val().replace(/\D/g, '');
+
+            if (resposta.status === 'CPF_nao_encontrado') {
+                closeModal('conferirCpfModal');
+                document.getElementById('cpf-cadastro').value = cpf;
+                document.getElementById('cpf-anamnese').value = cpf;
+                document.getElementById('ModalCadastro').style.display = 'block';
+            } else if (resposta.status === 'CPF_existente') {
+                closeModal('conferirCpfModal');
+                document.getElementById('cpf-atualizar').value = cpf;
+                document.getElementById('cpf-anamnese').value = cpf;
+                document.getElementById('cpf-saude-bucal').value = cpf;
+                preencherCadastro(cpf);
+                preencherAnamnese(cpf);
+                preencherSaudeBucal(cpf);
+                document.getElementById('modalInformacoesPaciente').style.display = 'block';
+            } else if (resposta.status === 'CPF_invalido') {
+                $("#mensagemErroCPF").text("O CPF deve conter 11 dígitos.");
+            }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                }
+            });
+        }
+
+        function Cadastrar() 
+        {
             console.log("Enviando formulário...");
             $.ajax({
                 type: "POST",
@@ -267,7 +462,8 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             });
         }
     
-        function Atualizar_Cadastro() {
+        function Atualizar_Cadastro() 
+        {
             console.log("Enviando formulário...");
             $.ajax({
                 type: "POST",
@@ -301,73 +497,227 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             });
         }
     
-        function ConsultarCPF() {
-    console.log("Enviando formulário...");
-    $.ajax({
-        type: "POST",
-        url: "../Controller/controllerSistema.php",
-        data: $("#CPF_form").serialize(),
-        success: function(response) {
-            console.log("Resposta recebida:", response);
-            var resposta = JSON.parse(response);
-            var cpf = $("#cpf-conferir").val().replace(/\D/g, '');
+        
 
-            if (resposta.status === 'CPF_nao_encontrado') 
-            {
-                closeModal('conferirCpfModal');
-                document.getElementById('cpf-cadastro').value = cpf;
-                document.getElementById('ModalCadastro').style.display = 'block';
-            } 
-            else if (resposta.status === 'CPF_existente') 
-            {
-                closeModal('conferirCpfModal');
-                document.getElementById('cpf-atualizar').value = cpf;
-                preencherCadastro(cpf);
-                document.getElementById('modalInformacoesPaciente').style.display = 'block';
-            } 
-            else if (resposta.status === 'CPF_invalido') 
-            {
-                $("#mensagemErroCPF").text("O CPF deve conter 11 dígitos.");
-            }
-        },
-        error: function(xhr, status, error) 
+        async function preencherCadastro(cpf) 
         {
-            console.error('AJAX Error:', status, error);
-        }
-    });
-}
+            console.log("Preenchendo cadastro...");
+            try {
+                const response = await fetch('../Controller/controllerSistema.php', 
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tipo: 'preencherCadastro', cpf: cpf })
+                });
+                const dados = await response.json();
+                console.log("Dados recebidos para preenchimento:", dados);
 
-async function preencherCadastro(cpf) 
+                if (dados.sucesso) 
+                {
+                    document.getElementById('nome-atualizar').value = dados.nome;
+                    document.getElementById('telefone-atualizar').value = dados.telefone;
+                    document.getElementById('email-atualizar').value = dados.email;
+                    document.getElementById('convenio-atualizar').value = dados.convenio;
+                    document.getElementById('dataNascimento-atualizar').value = dados.dataNascimento;
+                } 
+                else 
+                {
+                    console.error('Erro ao preencher cadastro:', dados.erro);
+                }
+            }
+            catch (error) 
+            {
+                console.error('Erro ao preencher cadastro:', error);
+            }
+        }
+
+        // ... Anamnese ...
+
+        async function preencherAnamnese(cpf) 
+        {
+            console.log("Preenchendo anamnese...");
+            try 
+            {
+                const response = await fetch('../Controller/controllerSistema.php', 
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tipo: 'preencherAnamnese', cpf: cpf })
+                });
+                const dados = await response.json();
+                console.log("Dados recebidos para preenchimento:", dados);
+
+                if (dados.sucesso) 
+                {
+                    document.getElementById('queixa-principal').value = dados.QueixaPrincipal;
+                    document.getElementById('uso-medicação').value = dados.UsoMedicacao;
+                    document.getElementById('alergia').value = dados.Alergia;
+
+                    const doencas = dados.Doencas.split(', ');
+                    document.querySelectorAll('input[name="doencas[]"]').forEach((checkbox) => 
+                    {
+                        if (doencas.includes(checkbox.value)) 
+                        {
+                            checkbox.checked = true;
+                        } 
+                        else 
+                        {
+                            checkbox.checked = false;
+                        }
+                    });
+
+                    document.getElementById('cirurgia').value = dados.Cirurgia;
+                    document.getElementById('sangramento').value = dados.Sangramento;
+                    document.getElementById('cicatrizacao').value = dados.Cicatrizacao;
+                    document.getElementById('falta-ar').value = dados.FaltaAr;
+                    document.getElementById('gestante').value = dados.Gestante;
+                    document.getElementById('observacoes').value = dados.Observacoes;
+                } 
+                else 
+                {
+                    console.error('Erro ao preencher anamnese:', dados.erro);
+                }
+            } 
+            catch (error) 
+            {
+                console.error('Erro ao preencher anamnese:', error);
+            }
+        }
+
+
+    
+        function Criar_Anamnese() 
+        {
+                console.log("Enviando formulário...");
+                $.ajax(
+                {
+                    type: "POST",
+                    url: "../Controller/controllerSistema.php",
+                    data: $("#Anamnese_form").serialize(),
+                    success: function(response) 
+                    {
+                    try {
+                            if (response) 
+                            {
+                                var resposta = JSON.parse(response);
+                                if (resposta.status === 'Anamnese_criada') 
+                                {
+                                    $("#mensagemSucessoAnamnese").text("Anamnese foi criado");
+                                } 
+                                else if (resposta.status === 'Anamnese_atualizada') 
+                                {
+                                    $("#mensagemSucessoAnamnese").text("Anamnese foi atualizado");
+                                } 
+                                else if (resposta.status === 'Queixa_vazia') 
+                                {
+                                    $("#mensagemErroQueixa").text("A queija é obrigatoria");
+                                }  
+                                else 
+                                {
+                                    console.error("Erro ao criar anamnese:", resposta);
+                                }
+                            } 
+                            else 
+                            {
+                                console.error("Resposta vazia recebida.");
+                            }
+                        } 
+                        catch (e)
+                        {
+                            console.error("Erro ao analisar resposta JSON:", e, response);
+                        }
+                    },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                }
+            });
+        }
+
+        // ... Saude bucal ...
+
+async function preencherSaudeBucal(cpf) 
 {
-    console.log("Preenchendo cadastro...");
+    console.log("Preenchendo saúde bucal...");
     try {
         const response = await fetch('../Controller/controllerSistema.php', 
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ tipo: 'preencherCadastro', cpf: cpf })
+            body: JSON.stringify({ tipo: 'preencherSaudeBucal', cpf: cpf })
         });
         const dados = await response.json();
         console.log("Dados recebidos para preenchimento:", dados);
 
         if (dados.sucesso) 
         {
-            document.getElementById('nome-atualizar').value = dados.nome;
-            document.getElementById('telefone-atualizar').value = dados.telefone;
-            document.getElementById('email-atualizar').value = dados.email;
-            document.getElementById('convenio-atualizar').value = dados.convenio;
-            document.getElementById('dataNascimento-atualizar').value = dados.dataNascimento;
+            document.getElementById('reacao-anestesia').value = dados.ReacaoAnestesia;
+            document.getElementById('dor-dentes').value = dados.DorDentes;
+            document.getElementById('dor-gengiva').value = dados.DorGengiva;
+            document.getElementById('sangramento-gengiva').value = dados.SangramentoGengiva;
+            document.getElementById('gosto-ruim-boca').value = dados.GostoRuimBoca;
+            document.getElementById('boca-seca').value = dados.BocaSeca;
+            document.getElementById('ranger-dentes').value = dados.RangerDentes;
+            document.getElementById('dor-maxilar').value = dados.DorMaxilar;
+            document.getElementById('dor-ouvido').value = dados.DorOuvido;
+            document.getElementById('ultimo-tratamento').value = dados.UltimoTratamento;
+            document.getElementById('fumante').value = dados.Fumante;
+            document.getElementById('escova-dentes').value = dados.EscovaDentes;
+            document.getElementById('fio-dental').value = dados.FioDental;
         } 
         else 
         {
-            console.error('Erro ao preencher cadastro:', dados.erro);
+            console.error('Erro ao preencher saúde bucal:', dados.erro);
         }
-    }
+    } 
     catch (error) 
     {
-        console.error('Erro ao preencher cadastro:', error);
+        console.error('Erro ao preencher saúde bucal:', error);
     }
 }
+        
+        function Criar_SaudeBucal() 
+        {
+            console.log("Enviando formulário...");
+            $.ajax({
+                type: "POST",
+                url: "../Controller/controllerSistema.php",
+                data: $("#SaudeBucal_form").serialize(),
+                success: function(response) 
+                {
+                    try 
+                    {
+                        if (response) 
+                        {
+                            var resposta = JSON.parse(response);
+                            if (resposta.status === 'SaudeBucal_criada') 
+                            {
+                                $("#mensagemSucessoSaudeBucal").text("Saúde Bucal criada com sucesso.");
+                            } else if (resposta.status === 'SaudeBucal_atualizada') 
+                            {
+                                $("#mensagemSucessoSaudeBucal").text("Saúde Bucal atualizada com sucesso.");
+                            } 
+                            else 
+                            {
+                                console.error("Erro ao criar saúde bucal:", resposta);
+                            }
+                        } 
+                        else 
+                        {
+                            console.error("Resposta vazia recebida.");
+                        }
+                    } 
+                    catch (e) 
+                    {
+                        console.error("Erro ao analisar resposta JSON:", e, response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                }
+            });
+        }
+
+
     </script>
 </body>
 
