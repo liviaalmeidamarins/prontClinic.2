@@ -80,7 +80,7 @@
                     console.log("Resposta recebida:", response); // Debug: log the response to the console
                     var resposta = JSON.parse(response);
                     if (resposta.status === 'cadastro_aceito') {
-                        window.location.href = 'sistema.php';
+                        window.location.href = 'login.html';
                     } else if (resposta.status === 'erro') {
                         console.log("Erros no formulário"); // Debug: log if there are form errors
                         var erros = resposta.erros;
