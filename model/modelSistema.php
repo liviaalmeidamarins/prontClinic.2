@@ -216,6 +216,39 @@ function buscarPacientePorCPF($cpf)
     }
 }
 
+
+function listarPacientesPorClinica($idClinica) 
+{
+    $conecta = conectarBanco();
+    if ($conecta) 
+    {
+        try 
+        {
+            $query = "SELECT pac_cpf, pac_nome, pac_atualizacao
+                      FROM paciente
+                      WHERE id_clinica = :idClinica
+                      ORDER BY pac_atualizacao DESC";
+
+            $stmt = $conecta->prepare($query);
+            $stmt->bindParam(':idClinica', $idClinica);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } 
+        catch (PDOException $e) 
+        {
+            // Tratar exceção conforme necessário
+            // Por exemplo: echo "Erro ao listar pacientes: " . $e->getMessage();
+            return false;
+        }
+    } 
+    else 
+    {
+        // Tratar falha na conexão com o banco de dados
+        return false;
+    }
+}
+
 // ... Anamnese ...
 
 
