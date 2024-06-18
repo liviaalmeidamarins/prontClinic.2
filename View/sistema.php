@@ -392,6 +392,21 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             }
         });
     
+    // iniciar pagina
+
+    function preencherCampos(cpf) 
+    {
+
+        document.getElementById('cpf-atualizar').value = cpf;
+        document.getElementById('cpf-anamnese').value = cpf;
+        document.getElementById('cpf-saude-bucal').value = cpf;
+        
+        preencherCadastro(cpf);
+        preencherAnamnese(cpf);
+        preencherSaudeBucal(cpf);
+        
+        document.getElementById('modalInformacoesPaciente').style.display = 'block';
+    }
        
     // ... Cadastro ...
 
@@ -422,11 +437,14 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                 preencherAnamnese(cpf);
                 preencherSaudeBucal(cpf);
                 document.getElementById('modalInformacoesPaciente').style.display = 'block';
-            } else if (resposta.status === 'CPF_invalido') {
+            } 
+            else if (resposta.status === 'CPF_invalido') 
+            {
                 $("#mensagemErroCPF").text("O CPF deve conter 11 dígitos.");
             }
                 },
-                error: function(xhr, status, error) {
+                error: function(xhr, status, error) 
+                {
                     console.error('AJAX Error:', status, error);
                 }
             });
@@ -444,7 +462,8 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                     var resposta = JSON.parse(response);
                     if (resposta.status === 'Cadastro_feito') 
                     {
-                        closeModal('ModalCadastro');                
+                        closeModal('ModalCadastro');
+                        location.reload();                  
                     } 
                     else if (resposta.status === 'Nome_vazio') 
                     {
