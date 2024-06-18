@@ -351,6 +351,49 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                 <h6>527.601.488.40</h6>
             </div>
         </div>
+
+
+        <?php
+//session_start();
+require_once('../Model/modelSistema.php');
+
+// Verificar se o usuário está autenticado e possui id_clinica na sessão
+if (isset($_SESSION['id_clinica'])) {
+    $idClinica = $_SESSION['id_clinica'];
+
+    // Obter a lista de pacientes da clínica atual
+    $pacientes = listarPacientesPorClinica($idClinica);
+
+    // Verificar se há pacientes retornados
+    if ($pacientes) {
+        // Iterar sobre os pacientes e exibir as informações dentro de cards
+        foreach ($pacientes as $paciente) {
+            echo '<div class="card">';
+            echo '<div class="card-body">';
+            
+            // Nome do paciente
+            echo '<h5 class="card-title">' . $paciente['pac_nome'] . '</h5>';
+            
+            // Informações adicionais
+            echo '<p class="card-text"><strong>CPF:</strong> ' . $paciente['pac_cpf'] . '</p>';
+            echo '<p class="card-text"><strong>Última Atualização:</strong> ' . $paciente['pac_atualizacao'] . '</p>';
+            
+            // Botão para abrir modal e preencher campos
+            echo '<button class="btn btn-primary" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">Abrir prontuário </button>';
+            
+            echo '</div>'; // fechar card-body
+            echo '</div>'; // fechar card
+            
+            echo '<br>'; // espaço entre os cards (opcional)
+        }
+    } else {
+        echo "<p>Nenhum paciente encontrado.</p>";
+    }
+} else {
+    echo "<p>Sessão inválida ou não autenticada.</p>";
+}
+?>
+
     </main>
 
 
@@ -359,6 +402,9 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
     <script src="js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
     <script>
+
+
+
         document.getElementById('openModalBtn').addEventListener('click', function(event) 
         {
             event.preventDefault(); // Evita o comportamento padrão do link
@@ -410,6 +456,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
        
     // ... Cadastro ...
 
+
     function ConsultarCPF() 
         {
             console.log("Enviando formulário...");
@@ -437,14 +484,11 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                 preencherAnamnese(cpf);
                 preencherSaudeBucal(cpf);
                 document.getElementById('modalInformacoesPaciente').style.display = 'block';
-            } 
-            else if (resposta.status === 'CPF_invalido') 
-            {
+            } else if (resposta.status === 'CPF_invalido') {
                 $("#mensagemErroCPF").text("O CPF deve conter 11 dígitos.");
             }
                 },
-                error: function(xhr, status, error) 
-                {
+                error: function(xhr, status, error) {
                     console.error('AJAX Error:', status, error);
                 }
             });
@@ -462,8 +506,8 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                     var resposta = JSON.parse(response);
                     if (resposta.status === 'Cadastro_feito') 
                     {
-                        closeModal('ModalCadastro');
-                        location.reload();                  
+                        closeModal('ModalCadastro');   
+                        location.reload();             
                     } 
                     else if (resposta.status === 'Nome_vazio') 
                     {
