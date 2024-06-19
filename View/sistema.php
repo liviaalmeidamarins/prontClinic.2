@@ -143,7 +143,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                     
                     <label for="data-nascimento-atualizar">Data de nascimento</label>
                     <input type="date" id="dataNascimento-atualizar" name="dataNascimento-atualizar">
-                    <span id="mensagemErroCadastroAtualizado" class="text-danger"></span><br>
+                    <span id="mensagemErroCadastroAtualizado" class="text-success"></span><br>
             
                     <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Atualizar cadastro" onclick="Atualizar_Cadastro()">
                 </div>
@@ -212,7 +212,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                     <label for="observacoes">Observações</label>
                     <textarea id="observacoes" name="observacoes"></textarea><br>
 
-                    <span id="mensagemSucessoAnamnese" class="text-danger"></span><br>
+                    <span id="mensagemSucessoAnamnese" class="text-success"></span><br>
                     <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Criar Anamnese" onclick="Criar_Anamnese()">
                 </div>
             </form>
@@ -300,7 +300,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                         <option value="sim">Sim</option>
                     </select><br>
         
-                    <span id="mensagemSucessoSaudeBucal" class="text-danger"></span><br>
+                    <span id="mensagemSucessoSaudeBucal" class="text-success"></span><br>
                     <input type="button" class="btn btn-primary" style="background-color: #D6E88D; border: transparent;" value="Criar Saúde Bucal" onclick="Criar_SaudeBucal()">
                 </div>
             </form>
@@ -368,18 +368,20 @@ if (isset($_SESSION['id_clinica'])) {
     if ($pacientes) {
         // Iterar sobre os pacientes e exibir as informações dentro de cards
         foreach ($pacientes as $paciente) {
-            echo '<div class="card">';
-            echo '<div class="card-body">';
+            echo '<div class="bloco">';
+            echo '<div class="bloquinho">';
+
+            echo '<p class="card-text"><strong></strong> ' . $paciente['pac_atualizacao'] . '</p>';
+            
             
             // Nome do paciente
             echo '<h5 class="card-title">' . $paciente['pac_nome'] . '</h5>';
             
             // Informações adicionais
             echo '<p class="card-text"><strong>CPF:</strong> ' . $paciente['pac_cpf'] . '</p>';
-            echo '<p class="card-text"><strong>Última Atualização:</strong> ' . $paciente['pac_atualizacao'] . '</p>';
-            
+           
             // Botão para abrir modal e preencher campos
-            echo '<button class="btn btn-primary" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">Abrir prontuário </button>';
+            echo '<button class="btn btn-white" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">Abrir </button>';
             
             echo '</div>'; // fechar card-body
             echo '</div>'; // fechar card
