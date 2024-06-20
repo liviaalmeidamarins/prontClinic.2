@@ -342,7 +342,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             </a>
         </div>
 
-        <div class="bloco">
+        <!--<div class="bloco">
             <div class="bloquinho">
                 <p><b>Abril</b> <br> 10</p>
             </div>
@@ -350,7 +350,7 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
                 <h6>Lívia Almeida Marins</h6>
                 <h6>527.601.488.40</h6>
             </div>
-        </div>
+        </div>-->
 
 
         <?php
@@ -381,7 +381,7 @@ if (isset($_SESSION['id_clinica'])) {
             echo '<p class="card-text"><strong>CPF:</strong> ' . $paciente['pac_cpf'] . '</p>';
            
             // Botão para abrir modal e preencher campos
-            echo '<button class="btn btn-white" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">Abrir </button>';
+            echo '<button class="btn btn-success" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">Abrir </button>';
             
             echo '</div>'; // fechar card-body
             echo '</div>'; // fechar card
