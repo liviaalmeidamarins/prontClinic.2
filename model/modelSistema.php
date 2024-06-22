@@ -217,7 +217,7 @@ function buscarPacientePorCPF($cpf)
 }
 
 
-function listarPacientesPorClinica($idClinica) 
+function listarPacientesPorClinica($idClinica, $termoPesquisa = '') 
 {
     $conecta = conectarBanco();
     if ($conecta) 
@@ -226,11 +226,22 @@ function listarPacientesPorClinica($idClinica)
         {
             $query = "SELECT pac_cpf, pac_nome, pac_atualizacao
                       FROM paciente
-                      WHERE id_clinica = :idClinica
-                      ORDER BY pac_atualizacao DESC";
+                      WHERE id_clinica = :idClinica";
+
+            if (!empty($termoPesquisa)) {
+                $query .= " AND (pac_nome LIKE :termo OR pac_cpf LIKE :termo)";
+            }
+
+            $query .= " ORDER BY pac_atualizacao DESC";
 
             $stmt = $conecta->prepare($query);
             $stmt->bindParam(':idClinica', $idClinica);
+
+            if (!empty($termoPesquisa)) {
+                $termoComCuringa = '%' . $termoPesquisa . '%';
+                $stmt->bindParam(':termo', $termoComCuringa);
+            }
+
             $stmt->execute();
             
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

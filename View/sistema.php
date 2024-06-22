@@ -335,34 +335,26 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             <h3>Bem-vindo, <?php echo htmlspecialchars($nome); ?> </h3>
         </div>
 
-        <div class="search-box">
-            <input type="text" placeholder="Nome ou CPF" class="search-text">
-            <a href="#" class="search-btn">
-                <img src="img/search.svg" alt="lupa" height="20" width="20">
-            </a>
-        </div>
-
-        <!--<div class="bloco">
-            <div class="bloquinho">
-                <p><b>Abril</b> <br> 10</p>
-            </div>
-            <div class="nome">
-                <h6>Lívia Almeida Marins</h6>
-                <h6>527.601.488.40</h6>
-            </div>
-        </div>-->
-
-
         <?php
-//session_start();
 require_once('../Model/modelSistema.php');
 
 // Verificar se o usuário está autenticado e possui id_clinica na sessão
 if (isset($_SESSION['id_clinica'])) {
     $idClinica = $_SESSION['id_clinica'];
+    
+    // Verificar se há um termo de pesquisa
+    $termoPesquisa = isset($_GET['search']) ? $_GET['search'] : '';
 
     // Obter a lista de pacientes da clínica atual
-    $pacientes = listarPacientesPorClinica($idClinica);
+    $pacientes = listarPacientesPorClinica($idClinica, $termoPesquisa);
+
+    // Exibir a caixa de pesquisa
+    echo '<form method="GET" action="" class="search-box">';
+    echo '<input type="text" name="search" placeholder="Nome ou CPF" class="search-text" value="' . htmlspecialchars($termoPesquisa) . '">';
+    echo '<a href="#" class="search-btn" onclick="this.closest(\'form\').submit();">';
+    echo '<img src="img/search.svg" alt="lupa" height="20" width="20">';
+    echo '</a>';
+    echo '</form>';
 
     // Verificar se há pacientes retornados
     if ($pacientes) {
@@ -372,7 +364,6 @@ if (isset($_SESSION['id_clinica'])) {
             echo '<div class="bloquinho">';
 
             echo '<p class="card-text"><strong></strong> ' . $paciente['pac_atualizacao'] . '</p>';
-            
             
             // Nome do paciente
             echo '<h5 class="card-title">' . $paciente['pac_nome'] . '</h5>';
