@@ -335,11 +335,12 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             <h3>Bem-vindo, <?php echo htmlspecialchars($nome); ?> </h3>
         </div>
 
-        <?php
+<?php
 require_once('../Model/modelSistema.php');
 
 // Verificar se o usuário está autenticado e possui id_clinica na sessão
-if (isset($_SESSION['id_clinica'])) {
+if (isset($_SESSION['id_clinica'])) 
+{
     $idClinica = $_SESSION['id_clinica'];
     
     // Verificar se há um termo de pesquisa
@@ -357,13 +358,17 @@ if (isset($_SESSION['id_clinica'])) {
     echo '</form>';
 
     // Verificar se há pacientes retornados
-    if ($pacientes) {
+    if ($pacientes) 
+    {
         // Iterar sobre os pacientes e exibir as informações dentro de cards
-        foreach ($pacientes as $paciente) {
+        foreach ($pacientes as $paciente) 
+        {
             echo '<div class="bloco">';
             echo '<div class="bloquinho">';
 
-            echo '<p class="card-text"><strong></strong> ' . $paciente['pac_atualizacao'] . '</p>';
+            // Formatar a data
+            $dataFormatada = date('d/m/Y', strtotime($paciente['pac_atualizacao']));
+            echo '<p class="card-text"><strong>Data de Atualização:</strong> ' . $dataFormatada . '</p>';
             
             // Nome do paciente
             echo '<h5 class="card-title">' . $paciente['pac_nome'] . '</h5>';
@@ -379,10 +384,14 @@ if (isset($_SESSION['id_clinica'])) {
             
             echo '<br>'; // espaço entre os cards (opcional)
         }
-    } else {
+    } 
+    else 
+    {
         echo "<p>Nenhum paciente encontrado.</p>";
     }
-} else {
+} 
+else 
+{
     echo "<p>Sessão inválida ou não autenticada.</p>";
 }
 ?>

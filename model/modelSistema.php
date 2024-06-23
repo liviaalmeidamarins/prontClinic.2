@@ -260,6 +260,7 @@ function listarPacientesPorClinica($idClinica, $termoPesquisa = '')
     }
 }
 
+
 // ... Anamnese ...
 
 
