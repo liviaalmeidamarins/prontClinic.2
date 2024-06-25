@@ -364,11 +364,12 @@ if (isset($_SESSION['id_clinica'])) {
         foreach ($pacientes as $paciente) {
             echo '<div class="card" style="background-color: #D6E88D; width: 30%; height: 15%px; display: flex; align-items: left; justify-content: space-between; padding: 6px; 
             border: none; cursor: pointer;" onclick="preencherCampos(\'' . $paciente['pac_cpf'] . '\')">';
+    
             $dataFormatada = date('d/m/Y', strtotime($paciente['pac_atualizacao']));
             echo '<div>'; 
-            echo '<h4 class="card-title"><b>' . $paciente['pac_nome'] . '</b></h6>';
-            echo '<p class="card-text"><strong>CPF:</strong> ' . $paciente['pac_cpf'] . '</p>';  
-            echo '<p class="card-text"><strong>Ultima visita</strong> ' . $dataFormatada . '</p>';
+            echo '<h4 class="card-title" style="color: white;"><b>' . $paciente['pac_nome'] . '</b></h6>';
+            echo '<p class="card-text"><nome class"estilo" style="color: white;">CPF: </nome> <strong>' . $paciente['pac_cpf'] . '</strong></p>';
+            echo '<p class="card-text"><nome class"estilo" style="color: white;">Ultima visita: </nome> <strong>' . $dataFormatada . '</strong></p>';
             echo '</div>'; 
             
             // Você pode manter o espaço entre os cards com uma margem ou usando <br> como no seu exemplo
