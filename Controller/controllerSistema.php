@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             exit;
         }
     
-        if ($tipo === 'preencherAnamnese') {
+        if ($tipo === 'preencherAnamnese') 
+        {
             $cpf = $data['cpf'];
             $ID_Paciente = Conferir_ID_Paciente($cpf);
             $dadosAnamnese = buscarAnamnesePorIDPaciente($ID_Paciente);
@@ -164,18 +165,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $Gestante = isset($_POST['gestante']) ? (int)$_POST['gestante'] : 0;
             $Observacoes = $_POST['observacoes'] ?? '';
             
-            if (conferirExistenciaAnamnese($ID_Paciente)) 
+            if (empty($QueixaPrincipal)) 
             {
-                atualizarAnamnese($ID_Paciente, $QueixaPrincipal, $UsoMedicacao, $Alergia, $Doencas, $Cirurgia, $Sangramento, $Cicatrizacao, $FaltaAr, $Gestante, $Observacoes);
-                echo json_encode(["status" => "Anamnese_atualizada"]);
-                exit;
-            } 
-            else 
-            {
-                criarAnamnese($ID_Paciente, $QueixaPrincipal, $UsoMedicacao, $Alergia, $Doencas, $Cirurgia, $Sangramento, $Cicatrizacao, $FaltaAr, $Gestante, $Observacoes);
-                echo json_encode(["status" => "Anamnese_criada"]);
+                echo json_encode(["status" => "Queixa_vazia"]);
                 exit;
             }
+            else
+            {
+                if (conferirExistenciaAnamnese($ID_Paciente)) 
+                {
+                    atualizarAnamnese($ID_Paciente, $QueixaPrincipal, $UsoMedicacao, $Alergia, $Doencas, $Cirurgia, $Sangramento, $Cicatrizacao, $FaltaAr, $Gestante, $Observacoes);
+                    echo json_encode(["status" => "Anamnese_atualizada"]);
+                    exit;
+                } 
+                else 
+                {
+                    criarAnamnese($ID_Paciente, $QueixaPrincipal, $UsoMedicacao, $Alergia, $Doencas, $Cirurgia, $Sangramento, $Cicatrizacao, $FaltaAr, $Gestante, $Observacoes);
+                    echo json_encode(["status" => "Anamnese_criada"]);
+                    exit;
+                }
+            }
+            
             
         }
         else if ($tipo === 'SaudeBucal_form') 

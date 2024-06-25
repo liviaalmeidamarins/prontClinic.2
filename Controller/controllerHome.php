@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
+    $email = strtolower($email);
+    
     // For debugging purposes, log the received values
     error_log("Email: " . $email);
     error_log("Senha: " . $senha);

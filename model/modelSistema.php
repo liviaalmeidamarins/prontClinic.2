@@ -2,6 +2,8 @@
 
 include 'conexao.php';
 
+
+
     function conferirExistenciaPaciente($cpf) 
     {
         $conecta = conectarBanco();
@@ -226,8 +228,7 @@ function listarPacientesPorClinica($idClinica, $termoPesquisa = '')
                       FROM paciente
                       WHERE id_clinica = :idClinica";
 
-            if (!empty($termoPesquisa)) 
-            {
+            if (!empty($termoPesquisa)) {
                 $query .= " AND (pac_nome LIKE :termo OR pac_cpf LIKE :termo)";
             }
 
@@ -236,8 +237,7 @@ function listarPacientesPorClinica($idClinica, $termoPesquisa = '')
             $stmt = $conecta->prepare($query);
             $stmt->bindParam(':idClinica', $idClinica);
 
-            if (!empty($termoPesquisa)) 
-            {
+            if (!empty($termoPesquisa)) {
                 $termoComCuringa = '%' . $termoPesquisa . '%';
                 $stmt->bindParam(':termo', $termoComCuringa);
             }
