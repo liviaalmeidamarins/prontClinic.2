@@ -194,9 +194,14 @@ input{
     /*A estilização da modal 1*/
 
     .input-modal1{
-
-        border: 2px solid rgb(153, 148, 146);
+        padding: 3px;
+        border: 2px solid rgb(207, 207, 207);
         border-radius: 4px;
+    }
+
+    .labelModal{
+        justify-content: center;
+        align-items: center; 
     }
 
     .formatacao-radio{
@@ -254,7 +259,7 @@ input{
     .formataçao-modal{
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: left;
         flex-direction: column;
         border: 1px solid rgb(240, 238, 237);
     }
