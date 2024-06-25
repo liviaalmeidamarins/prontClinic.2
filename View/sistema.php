@@ -171,16 +171,24 @@ $email = isset($_SESSION['Cli_email']) ? $_SESSION['Cli_email'] : '';
             
                     <label>Possui as seguintes doenças?</label><br>
                     <div>
-                        <input type="checkbox" id="hipertensao" name="doencas[]" value="hipertensão">
-                        <label for="hipertensao">Hipertensão</label>
+                            <input type="checkbox" id="asma" name="doencas[]" value="asma">
+                            <label for="asma">Asma</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="diabetes" name="doencas[]" value="diabetes">
-                        <label for="diabetes">Diabetes</label>
+                            <input type="checkbox" id="Cardiaca" name="doencas[]" value="Cardiaca">
+                            <label for="Cardiaca">Cardiaca</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="asma" name="doencas[]" value="asma">
-                        <label for="asma">Asma</label>
+                    <input type="checkbox" id="diabetes" name="doencas[]" value="diabetes">
+                    <label for="diabetes">Diabetes</label>
+                    </div>
+                    <div>
+                            <input type="checkbox" id="Gastrointestinal" name="doencas[]" value="Gastrointestinal">
+                            <label for="Gastrointestinal">Gastrointestinal</label>
+                    </div>
+                    <div>
+                            <input type="checkbox" id="hipertensao" name="doencas[]" value="hipertensão">
+                            <label for="hipertensao">Hipertensão</label>
                     </div>
             
                     <label for="cirurgia">Passou por alguma cirurgia?</label>
